@@ -37,6 +37,19 @@ public class SparkLauncherServiceImpl implements SparkLauncherService {
     @Value("${spark.default.parallelism}")
     private String spark_default_parallelism;
 
+    @Value("${spark.default.author}")
+    private String spark_default_author;
+
+
+    @Override
+    public void test() {
+        log.info("hadoop_conf_dir:"+hadoop_conf_dir);
+        log.info("spark_driver_memory:"+spark_driver_memory);
+        log.info("spark_executor_cores:"+spark_executor_cores);
+        log.info("spark_default_parallelism:"+spark_default_parallelism);
+        log.info("spark_default_author:"+spark_default_author);
+    }
+
     @Override
     public int submit(String appName, String jarPath, String queue,String mainClass,String[] appArgs) throws IOException {
         int flag = 0;
