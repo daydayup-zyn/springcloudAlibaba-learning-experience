@@ -25,11 +25,6 @@ public class SparkLauncherController {
         return "index";
     }
 
-    @RequestMapping("/log")
-    public String status(){
-        return "sparklog";
-    }
-
     /**
      * 参数存在非法字符,get方法会报错
      * @param appName
