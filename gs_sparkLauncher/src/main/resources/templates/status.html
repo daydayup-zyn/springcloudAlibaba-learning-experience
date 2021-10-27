@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>服务状态</title>
+    <script src="js/jquery.min.js"></script>
+    <style>
+        body{
+            margin:0px;
+            background-image:url('../image/index/bg.jpg');
+            background-position:center bottom;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+            background-size:cover;
+            background-origin:border-box;
+            position:relative;
+            top: 400px;
+            left:0px;
+            width:600px;
+            margin-left:auto;
+            margin-right:auto;
+            text-align:center;
+        }
+        #div{
+            margin:0 auto;
+            border:5px solid #EEEEEE;
+            width:600px;
+            height:100px;
+            top:400px;
+            color: #FFFFFF}
+        #submit{
+            border-width:0px;
+            position:absolute;
+            left:236px;
+            top:200px;
+            width:128px;
+            height:42px;
+            display:flex;
+            font-family:'微软雅黑 Bold', '微软雅黑';
+            font-weight:700;
+            font-style:normal;
+            color:#000000;
+            background-color: #15d6ba;
+            vertical-align:middle;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        $(function(){
+            // 点击事件
+            $("#submit").click(function(){
+                // window.history.back();
+                // window.location.reload();
+                location.replace(document.referrer);
+            });
+        })
+    </script>
+
+    <div id="div">
+        <h1>执行完成，请确认结果</h1>
+    </div>
+
+    <input id="submit" type="button" onmouseover="this.style.backgroundColor='red';" onmouseout="this.style.backgroundColor='';" class="btn" onclick="click()" value="          返回" />
+</body>
+</html>

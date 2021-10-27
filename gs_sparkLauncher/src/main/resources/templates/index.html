@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>甘肃spark任务提交工具</title>
+
+    <script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+    <script src="js/formData.js"></script>
+    <link href="css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="css/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="css/style/styles.css" type="text/css" rel="stylesheet"/>
+    <div id="base" class="">
+        <!-- Unnamed (动态面板) -->
+        <div id="u0" class="ax_default">
+            <div id="u0_state0" class="panel_state" data-label="State1" style="">
+                <div id="u0_state0_content" class="panel_state_content">
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u1" class="ax_default box_1">
+                        <div id="u1_text" class="text " style="display:none; visibility: hidden">
+                            <p></p>
+                        </div>
+                    </div>
+                    <input id="submit" type="button" onmouseover="this.style.backgroundColor='red';" onmouseout="this.style.backgroundColor='';" class="btn" value="          执行" />
+
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u3" class="ax_default _一级标题">
+                        <div id="u3_div" class=""></div>
+                        <div id="u3_text" class="text ">
+                            <p><span>甘肃spark任务提交工具</span></p>
+                        </div>
+                    </div>
+
+                    <!-- 2 (文本框) -->
+                    <div id="u5" class="ax_default text_field" data-label="2">
+                        <input id="u5_input" type="text" class="u5_input" placeholder="任务名称"/>
+                    </div>
+
+                    <!-- 3 (文本框) -->
+                    <div id="u6" class="ax_default text_field" data-label="3">
+                        <input id="u6_input" type="text" class="u6_input" placeholder="jar包"/>
+                    </div>
+
+                    <!-- 4 (文本框) -->
+                    <div id="u7" class="ax_default text_field" data-label="4">
+                        <input id="u7_input" type="text" class="u7_input" placeholder="运行主类"/>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="message"></div>
+</body>
+<script type="text/javascript">
+    var websocket = null;
+
+    //判断当前浏览器是否支持WebSocket
+    if('WebSocket' in window){
+        websocket = new WebSocket("ws://192.168.1.184:10088/websocket/sparkJobLog");
+    }
+    else{
+        alert('Not support websocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function(){
+        setMessageInnerHTML("websocket error");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function(){
+        setMessageInnerHTML("websocket连接已打开：");
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function(event){
+        setMessageInnerHTML(event.data);
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function(){
+        setMessageInnerHTML("websocket连接关闭");
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function(){
+        websocket.close();
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML){
+        document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+
+    //关闭连接
+    function closeWebSocket(){
+        websocket.close();
+    }
+
+</script>
+</html>
