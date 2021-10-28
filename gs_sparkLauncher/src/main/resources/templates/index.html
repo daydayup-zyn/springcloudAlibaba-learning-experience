@@ -25,6 +25,7 @@
                         </div>
                     </div>
                     <input id="submit" type="button" onmouseover="this.style.backgroundColor='red';" onmouseout="this.style.backgroundColor='';" class="btn" value="          执行" />
+                    <input id="reload" type="button" onmouseover="this.style.backgroundColor='red';" onmouseout="this.style.backgroundColor='';" class="btn" value="          刷新" />
 
 
                     <!-- Unnamed (矩形) -->
@@ -61,7 +62,7 @@
 
     //判断当前浏览器是否支持WebSocket
     if('WebSocket' in window){
-        websocket = new WebSocket("ws://192.168.1.184:10088/websocket/sparkJobLog");
+        websocket = new WebSocket("ws://localhost:10088/websocket/sparkJobLog");
     }
     else{
         alert('Not support websocket')

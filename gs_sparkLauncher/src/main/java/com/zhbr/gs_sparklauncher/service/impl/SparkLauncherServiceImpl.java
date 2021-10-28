@@ -49,12 +49,7 @@ public class SparkLauncherServiceImpl implements SparkLauncherService {
         log.info("spark_default_parallelism:"+spark_default_parallelism);
         int i = 0;
         while (i<10){
-            try {
-                webSocketServer.sendMessage("sparkJobLog","hello world");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            log.info("发送");
+            webSocketServer.sendMessage("sparkJobLog","spark job status：hello world");
             i++;
         }
     }
@@ -82,13 +77,13 @@ public class SparkLauncherServiceImpl implements SparkLauncherService {
                     @Override
                     public void stateChanged(SparkAppHandle handle) {
                         log.info("**********  state  changed  **********");
-                        webSocketServer.sendMessage("sparkJobLog",handle.getState().toString());
+                        webSocketServer.sendMessage("sparkJobLog","spark job status："+handle.getState().toString());
                     }
 
                     @Override
                     public void infoChanged(SparkAppHandle handle) {
                         log.info("**********  info  changed  **********");
-                        webSocketServer.sendMessage("sparkJobLog",handle.getState().toString());
+                        webSocketServer.sendMessage("sparkJobLog","spark job status："+handle.getState().toString());
                     }
                 });
 

@@ -14,16 +14,23 @@ $(function () {
             getDataByType(u5_input,u6_input,u7_input)
         }
 
-        $("#u5_input").remove()
-        $("#u6_input").remove()
-        $("#u7_input").remove()
+        // $("#u5_input").remove()
+        // $("#u6_input").remove()
+        // $("#u7_input").remove()
     })
-
+})
+$(function(){
+    // 点击事件
+    $("#reload").click(function(){
+        // window.history.back();
+        // window.location.reload();
+        location.replace(document.referrer);
+    });
 })
 function getDataByType(a,b,c){
     var chartData = "";
     $.ajax({
-        url:'submit.do',
+        url:'test.do',
         type:'post',
         async:false,
         data:{

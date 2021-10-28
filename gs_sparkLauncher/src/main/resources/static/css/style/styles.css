@@ -141,7 +141,7 @@
 #u3 {
   border-width:0px;
   position:absolute;
-  left:170px;
+  left:130px;
   top:10px;
   width:128px;
   height:42px;
@@ -154,7 +154,24 @@
 #submit {
   border-width:0px;
   position:absolute;
-  left:236px;
+  left:160px;
+  top:300px;
+  width:128px;
+  height:42px;
+  display:flex;
+  font-family:'微软雅黑 Bold', '微软雅黑';
+  font-weight:700;
+  font-style:normal;
+  color:#000000;
+  background-color: #15d6ba;
+  vertical-align:middle;
+  text-align: center;
+}
+
+#reload {
+  border-width:0px;
+  position:absolute;
+  left:300px;
   top:300px;
   width:128px;
   height:42px;
@@ -1272,12 +1289,12 @@
   text-transform:none;
 }
 #message {
-  border-width:5px;
+  border:3px solid;
   position:absolute;
   left:0px;
-  top:600px;
-  width:2000px;
-  height:553px;
+  top:520px;
+  width:1000px;
+  height:400px;
   display:flex;
   font-family:'微软雅黑';
   font-weight:400;
