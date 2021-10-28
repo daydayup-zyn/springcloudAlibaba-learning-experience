@@ -89,7 +89,7 @@ public class SparkLauncherServiceImpl implements SparkLauncherService {
 
         while(!"FINISHED".equalsIgnoreCase(handler.getState().toString()) && !"FAILED".equalsIgnoreCase(handler.getState().toString())){
             try {
-                Thread.sleep(10000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 log.error(e.getMessage());
             } catch (Exception e) {
@@ -97,9 +97,13 @@ public class SparkLauncherServiceImpl implements SparkLauncherService {
             }
         }
         if ("FINISHED".equalsIgnoreCase(handler.getState().toString())){
+            webSocketServer.sendMessage("sparkJobLog","spark app id："+handler.getAppId());
+            webSocketServer.sendMessage("sparkJobLog","执行完成，请确认是否执行成功！");
             flag = 1;
         }else if ("FAILED".equalsIgnoreCase(handler.getState().toString())){
             flag = -1;
+            webSocketServer.sendMessage("sparkJobLog","spark app id："+handler.getAppId());
+            webSocketServer.sendMessage("sparkJobLog","执行失败，请去yarn查看具体运行日志！");
         }
         return flag;
     }

@@ -30,7 +30,7 @@ $(function(){
 function getDataByType(a,b,c){
     var chartData = "";
     $.ajax({
-        url:'test.do',
+        url:'submit.do',
         type:'post',
         async:false,
         data:{
