@@ -4,8 +4,11 @@ import com.zhbr.gs_sparklauncher.service.SparkLauncherService;
 import com.zhbr.gs_sparklauncher.utils.APIResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 
@@ -14,6 +17,12 @@ import java.io.IOException;
 @RequestMapping
 public class SparkLauncherController {
 
+    @Value("${server.address.ip}")
+    private String app_ip;
+
+    @Value("${server.port}")
+    private String app_port;
+
     @Autowired
     private SparkLauncherService sparkLauncherService;
 
@@ -21,7 +30,9 @@ public class SparkLauncherController {
      * index页面
      * */
     @RequestMapping
-    public String index(){
+    public String index(Model model){
+        model.addAttribute("app_ip",app_ip);
+        model.addAttribute("app_port",app_port);
         return "index";
     }
 

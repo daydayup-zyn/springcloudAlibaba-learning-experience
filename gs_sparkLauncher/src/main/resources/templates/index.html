@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"></meta>
     <title>甘肃spark任务提交工具</title>
@@ -57,12 +58,14 @@
 
     <div id="message"></div>
 </body>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
     var websocket = null;
+    var app_ip = [[${app_ip}]];
+    var app_port = [[${app_port}]];
 
     //判断当前浏览器是否支持WebSocket
     if('WebSocket' in window){
-        websocket = new WebSocket("ws://192.168.1.184:10088/websocket/sparkJobLog");
+        websocket = new WebSocket("ws://"+app_ip+":"+app_port+"/websocket/sparkJobLog");
     }
     else{
         alert('Not support websocket')
